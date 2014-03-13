@@ -1,0 +1,8 @@
+#install.packages("RHmm")
+library(RHmm)
+v <- scan("geoData.txt", what = character(), sep = "\n", blank.lines.skip = F)
+hmm <- HMMFit(as.numeric(as.factor(v)), dis = "NORMAL", nStates = 14)
+write.table("hmm.mat",hmm$HMM$transMat)
+write.table(hmm$HMM$transMat,"hmm-mat.csv",sep=",")
+f <- as.factor(v)
+data.frame(1:length(levels(f)),levels(f))
